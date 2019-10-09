@@ -31,7 +31,7 @@ describe('Mount Quasar', () => {
     expect(wrapper.isVueInstance()).toBe(true)
   })
 
-  it('accesses the shallowMount', () => {
-    expect(wrapper.find('h1').text()).toContain('Tester')
+  it('has our heading on', () => {
+    expect(wrapper.find('h1').text()).toContain('Adding a book!')
   })
 })
