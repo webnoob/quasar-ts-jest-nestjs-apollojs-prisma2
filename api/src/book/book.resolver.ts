@@ -3,7 +3,6 @@ import { BookService } from './book.service'
 import { Book } from './model/book'
 import { BookArgs } from './dto/book.args'
 import BookCrudDto from './dto/book.crud.dto'
-import { Int } from 'type-graphql'
 
 @Resolver(of => Book)
 export class BookResolver {
@@ -20,7 +19,7 @@ export class BookResolver {
   }
 
   @Mutation(returns => Book)
-  delete (@Args({ name: 'id', type: () => Int }) id: number): Promise<any> {
+  delete (@Args('id') id: string): Promise<any> {
     return this.bookService.delete(id)
   }
 }

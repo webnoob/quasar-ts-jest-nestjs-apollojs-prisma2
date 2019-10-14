@@ -2,6 +2,7 @@ import Book from './book.model'
 import BaseCrudService from '../base/base.crud.service'
 import ICrudService from '../base/ICrudService'
 import BookCrudDto from './dto/book.crud.dto'
+import gql from 'graphql-tag'
 
 const bookService = class BookService extends BaseCrudService<Book> implements ICrudService<BookCrudDto, Book> {
   public constructor () {
@@ -9,7 +10,20 @@ const bookService = class BookService extends BaseCrudService<Book> implements I
   }
 
   public get (): Promise<Book[]> {
-    return Promise.resolve([new Book(), new Book()])
+    console.log(this.apolloClientService)
+    return this.apolloClientService.query({
+      query: gql`
+        query GetBooks {
+          books {
+            id,
+            title,
+            description
+          }
+        }
+      `
+    }).then(r => {
+      return r.data
+    })
   }
 
   public getById (id: number): Promise<Book> {

@@ -1,3 +1,8 @@
+import ApolloClient from 'apollo-client'
+import apolloClient from 'src/boot/apolloClient'
+
 export default class BaseCrudService<T> {
-  // Doesn't do anything yet.
+  protected get apolloClientService (): ApolloClient<any> {
+    return apolloClient
+  }
 }

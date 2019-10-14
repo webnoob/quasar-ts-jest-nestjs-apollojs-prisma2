@@ -20,7 +20,7 @@ export class BookService {
     })
   }
 
-  delete (id: number) {
+  delete (id: string) {
     return Promise.resolve()
   }
 }

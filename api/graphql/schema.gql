@@ -4,14 +4,14 @@
 # -----------------------------------------------
 
 type Book {
-  id: Int!
+  id: String!
   title: String!
   description: String
 }
 
 type Mutation {
-  create(id: Float, title: String = "", description: String): Book!
-  delete(id: Int!): Book!
+  create(id: String, title: String = "", description: String): Book!
+  delete(id: String!): Book!
 }
 
 type Query {

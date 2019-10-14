@@ -1,0 +1,21 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Book {
+  description: String
+  id: String!
+  title: String!
+}
+
+type Mutation {
+  create(description: String, id: String, title: String = ""): Book!
+  delete(id: String!): Book!
+}
+
+type Query {
+  books(skip: Int = 0, take: Int = 25): [Book!]!
+}

@@ -8,5 +8,8 @@ import BookCrudDto from 'src/modules/book/dto/book.crud.dto';
 export const actions: ActionTree<IBookState, IRootState> = {
   create ({ commit }, dto: BookCrudDto): Promise<Book> {
     return bookService.create(dto)
+  },
+  get ({ commit }): Promise<Book[]> {
+    return bookService.get()
   }
 }

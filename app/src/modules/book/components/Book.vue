@@ -1,6 +1,15 @@
 <template>
   <div>
     <h1>Adding a book!</h1>
+    <q-list>
+      <q-item
+        v-for="book in books"
+        :key="book.id"
+      >
+        {{book}}
+      </q-item>
+    </q-list>
+    <q-btn @click="getBooks" label="Get Books" />
     <q-btn @click="showAddBook" label="Click to add a book" />
 
     <q-dialog
@@ -22,6 +31,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import BookCrudDto from '../dto/book.crud.dto'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   name: 'Book',
@@ -31,6 +41,12 @@ export default Vue.extend({
       showingAddBook: false,
       title: ''
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      books: 'book/get'
+    })
   },
 
   methods: {
@@ -47,6 +63,12 @@ export default Vue.extend({
     },
     cancel () {
 
+    },
+    getBooks () {
+      this.$store.dispatch('book/get').then(books => {
+        console.log('Got some books!')
+        console.log(books)
+      })
     }
   }
 })
