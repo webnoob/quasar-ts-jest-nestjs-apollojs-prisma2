@@ -1,9 +1,6 @@
-interface IBaseModel {
-  id: number
-  createdDate: Date
-}
+import { IBaseModel } from './IBaseModel'
 
 export default class BaseModel implements IBaseModel {
-  public id!: number
+  public id!: string
   public createdDate!: Date
 }

@@ -1,0 +1,14 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+generator photon {
+  provider = "photonjs"
+}
+
+model Book {
+  id    String  @default(cuid()) @id @unique
+  title String
+  description  String?
+}
