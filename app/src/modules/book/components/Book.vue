@@ -9,7 +9,6 @@
         {{book}}
       </q-item>
     </q-list>
-    <q-btn @click="getBooks" label="Get Books" />
     <q-btn @click="showAddBook" label="Click to add a book" />
 
     <q-dialog
@@ -29,47 +28,33 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import BookCrudDto from '../dto/book.crud.dto'
-import { mapGetters } from 'vuex'
+import { Vue, Component } from 'vue-property-decorator'
+import Book from '../book.model'
+import BookService from '../book.service'
+import injector from '../../../boot/di'
 
-export default Vue.extend({
-  name: 'Book',
+@Component
+export default class BookComponent extends Vue {
+  showingAddBook: boolean = false
+  title: string = ''
+  books: Book[] = []
+  bookService: BookService = injector.get('bookService')
 
-  data () {
-    return {
-      showingAddBook: false,
-      title: ''
-    }
-  },
-
-  computed: {
-    ...mapGetters({
-      books: 'book/get'
-    })
-  },
-
-  methods: {
-    showAddBook () {
-      this.showingAddBook = !this.showingAddBook
-    },
-    save () {
-      const dto: BookCrudDto = {
-        description: '',
-        title: this.title
-      }
-
-      this.$store.dispatch('book/create', dto)
-    },
-    cancel () {
-
-    },
-    getBooks () {
-      this.$store.dispatch('book/get').then(books => {
-        console.log('Got some books!')
-        console.log(books)
-      })
-    }
+  showAddBook () {
+    this.showingAddBook = !this.showingAddBook
   }
-})
+
+  save () { }
+
+  cancel () { }
+
+  public created () {
+    console.log('this.bookService', this.bookService)
+    this.bookService.get().then(books => {
+      console.log('Got some books!')
+      console.log(books)
+      this.books = books
+    })
+  }
+}
 </script>

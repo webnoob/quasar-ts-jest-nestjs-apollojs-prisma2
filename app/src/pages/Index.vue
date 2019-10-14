@@ -5,14 +5,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Vue, Component } from 'vue-property-decorator'
 import Book from 'src/modules/book/components/Book.vue'
 
-export default Vue.extend({
-  name: 'PageIndex',
-
+@Component({
   components: {
     Book
   }
 })
+export default class IndexComponent extends Vue { }
 </script>

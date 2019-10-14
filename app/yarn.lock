@@ -6426,6 +6426,24 @@ jest@^24.8.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
+jpex-defaults@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jpex-defaults/-/jpex-defaults-2.0.0.tgz#cfee993bcf704103eb79851a376a41423645601a"
+  integrity sha1-z+6ZO89wQQPreYUaN2pBQjZFYBo=
+
+jpex-web@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/jpex-web/-/jpex-web-2.0.0.tgz#978c5ee46244673cdaaf0102fea80810d4fac53b"
+  integrity sha1-l4xe5GJEZzzarwEC/qgIENT6xTs=
+  dependencies:
+    jpex-defaults "^2.0.0"
+    promise-polyfill "^6.0.2"
+
+jpex@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/jpex/-/jpex-2.1.0.tgz#da389aed51b2296b3095d0ba059db3f2a7f3f69f"
+  integrity sha512-OaPn5axpBcoYKX8G6WKGr7NWyG+Y846oohFm2wPCHfjVXhORt7KuZyFASLl5grpTGqVYUkt+9ED9x51Jn6pUVA==
+
 js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
@@ -8698,6 +8716,11 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
+promise-polyfill@^6.0.2:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-6.1.0.tgz#dfa96943ea9c121fca4de9b5868cb39d3472e057"
+  integrity sha1-36lpQ+qcEh/KTem1hoyznTRy4Fc=
+
 promise@^8.0.2:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.3.tgz#f592e099c6cddc000d538ee7283bb190452b0bf6"
@@ -10737,7 +10760,7 @@ vue-class-component@^6.2.0:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
   integrity sha512-cH208IoM+jgZyEf/g7mnFyofwPDJTM/QvBNhYMjqGB8fCsRyTf68rH2ISw/G20tJv+5mIThQ3upKwoL4jLTr1A==
 
-vue-class-component@^7.0.1:
+vue-class-component@^7.0.1, vue-class-component@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.1.0.tgz#b33efcb10e17236d684f70b1e96f1946ec793e87"
   integrity sha512-G9152NzUkz0i0xTfhk0Afc8vzdXxDR1pfN4dTwE72cskkgJtdXfrKBkMfGvDuxUh35U500g5Ve4xL8PEGdWeHg==
@@ -10763,6 +10786,14 @@ vue-i18n@^8.0.0:
   version "8.14.1"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.14.1.tgz#0ca0a2742c14e0144481655157fffcc7cc313e50"
   integrity sha512-uHzw5GTFyf/TmjJXveSl3L4CG61KI4lvhKOQvx8W4Y8P2LZ3v3l/qw4KRs1C6pWyjkfY9p0rezYNFO5YzMEQ8A==
+
+vue-inject@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vue-inject/-/vue-inject-2.1.1.tgz#1a5ebcf7bfe97b070efa368f73091c9414caeca2"
+  integrity sha512-nn8TujsjtKbC6wSqxMwI/Y7Xyta8NeI06q7+2v7C/LN+LRwzO0wL1b0IqHRzIRTFUZq8C+JU1wc9LwEEahKW1A==
+  dependencies:
+    jpex "^2.1.0"
+    jpex-web "^2.0.0"
 
 vue-jest@^3.0.2:
   version "3.0.5"
@@ -10797,6 +10828,13 @@ vue-property-decorator@^7.3.0:
   integrity sha512-HarXfTQ/Nxm4s/APpAaGIGHq5ZzslApImQy8ZrtkfGamw8rUFAVgMS5C50/AQ80+wfw3Wpnf4bNzbmj75m/k2Q==
   dependencies:
     vue-class-component "^6.2.0"
+
+vue-property-decorator@^8.2.2:
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-8.2.2.tgz#ac895e9508ee1bf86e3a28568d94d842c2c8e42f"
+  integrity sha512-3gRrIeoUtjXvkoMX2stJsVs7805Pa9MXEndnk21ej+sWO7AIc5HF1TKqK0Pox5TEjpO02UbadIF0QWNrx6ZwXQ==
+  dependencies:
+    vue-class-component "^7.0.1"
 
 vue-router@3.1.3:
   version "3.1.3"

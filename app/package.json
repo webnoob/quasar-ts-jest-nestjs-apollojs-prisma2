@@ -29,9 +29,13 @@
     "graphql-tag": "^2.10.1",
     "node-fetch": "^2.6.0",
     "quasar": "^1.0.0",
-    "vue-i18n": "^8.0.0"
+    "vue-class-component": "^7.1.0",
+    "vue-i18n": "^8.0.0",
+    "vue-inject": "^2.1.1",
+    "vue-property-decorator": "^8.2.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-typescript": "^7.6.0",
     "@quasar/app": "^1.0.0",
     "@quasar/quasar-app-extension-testing": "^1.0.0",

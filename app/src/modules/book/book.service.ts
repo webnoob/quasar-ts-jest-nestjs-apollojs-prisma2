@@ -3,10 +3,13 @@ import BaseCrudService from '../base/base.crud.service'
 import ICrudService from '../base/ICrudService'
 import BookCrudDto from './dto/book.crud.dto'
 import gql from 'graphql-tag'
+import { ApolloClient } from 'apollo-client'
 
-const bookService = class BookService extends BaseCrudService<Book> implements ICrudService<BookCrudDto, Book> {
-  public constructor () {
+class BookService extends BaseCrudService<Book> implements ICrudService<BookCrudDto, Book> {
+  // eslint-disable-next-line @typescript-eslint/no-parameter-properties
+  public constructor (private readonly apolloClientService: ApolloClient<any>) {
     super()
+    console.log('Book Service', this.apolloClientService)
   }
 
   public get (): Promise<Book[]> {
@@ -43,4 +46,4 @@ const bookService = class BookService extends BaseCrudService<Book> implements I
   }
 }
 
-export default new bookService
+export default BookService
