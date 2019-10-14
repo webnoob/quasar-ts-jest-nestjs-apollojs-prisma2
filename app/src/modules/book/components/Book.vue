@@ -31,20 +31,30 @@
 import { Vue, Component } from 'vue-property-decorator'
 import Book from '../book.model'
 import BookService from '../book.service'
-import injector from '../../../boot/di'
+import { InjectDependant } from '../../../boot/di'
+import BookCrudDto from '../dto/BookCrudDto'
 
 @Component
 export default class BookComponent extends Vue {
-  showingAddBook: boolean = false
-  title: string = ''
-  books: Book[] = []
-  bookService: BookService = injector.get('bookService')
+  private showingAddBook: boolean = false
+  private title: string = ''
+  private books: Book[] = []
+
+  @InjectDependant private readonly bookService!: BookService
 
   showAddBook () {
     this.showingAddBook = !this.showingAddBook
   }
 
-  save () { }
+  save () {
+    const dto = new BookCrudDto()
+    dto.title = this.title
+    this.bookService.create(dto).then((book: Book) => {
+      this.$q.notify({
+        message: 'Book created: ' + book.id
+      })
+    })
+  }
 
   cancel () { }
 

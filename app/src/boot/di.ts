@@ -26,6 +26,9 @@ injector.service('bookService', ['apolloClientService'], BookService)
 export default injector
 
 export const InjectDependant = createDecorator((options, key) => {
-  console.log(options, key)
-  // options[key] = injector.get(key)
+  if (!options.computed) options.computed = {}
+  const dep = injector.get(key)
+  options.computed![key] = () => {
+    return dep
+  }
 })
