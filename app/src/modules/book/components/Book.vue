@@ -49,10 +49,7 @@ export default class BookComponent extends Vue {
   cancel () { }
 
   public created () {
-    console.log('this.bookService', this.bookService)
     this.bookService.get().then(books => {
-      console.log('Got some books!')
-      console.log(books)
       this.books = books
     })
   }

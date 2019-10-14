@@ -6,10 +6,8 @@ import gql from 'graphql-tag'
 import { ApolloClient } from 'apollo-client'
 
 class BookService extends BaseCrudService<Book> implements ICrudService<BookCrudDto, Book> {
-  // eslint-disable-next-line @typescript-eslint/no-parameter-properties
   public constructor (private readonly apolloClientService: ApolloClient<any>) {
     super()
-    console.log('Book Service', this.apolloClientService)
   }
 
   public get (): Promise<Book[]> {

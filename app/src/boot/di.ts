@@ -25,7 +25,7 @@ injector.service('bookService', ['apolloClientService'], BookService)
 
 export default injector
 
-export const InjectDependencies = createDecorator((options, key) => {
+export const InjectDependant = createDecorator((options, key) => {
   console.log(options, key)
   // options[key] = injector.get(key)
 })
