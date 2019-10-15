@@ -6,13 +6,12 @@
 
 <script lang="ts">
 import 'reflect-metadata'
-import { buildDependencyContainer } from './di/container'
+import { buildDependencyContainer } from './modules/diContainer'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class AppComponent extends Vue {
   created () {
-    console.log('beforeCreated!!')
     buildDependencyContainer()
   }
 }
