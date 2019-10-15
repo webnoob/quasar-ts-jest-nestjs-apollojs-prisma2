@@ -7,7 +7,7 @@ module.exports = {
   ],
   // noStackTrace: true,
   // bail: true,
-  // cache: false,
+  cache: false,
   // verbose: true,
   // watch: true,
   collectCoverage: true,

@@ -1,17 +1,23 @@
-import Book from './book.model'
-import BaseCrudService from '../base/base.crud.service'
-import ICrudService from '../base/ICrudService'
 import gql from 'graphql-tag'
-import { ApolloClient } from 'apollo-client'
-import IBookCrudDto from './dto/IBookCrudDto'
+import { inject, injectable } from 'inversify-props'
 
-class BookService extends BaseCrudService<Book> implements ICrudService<IBookCrudDto, Book> {
-  public constructor (private readonly apolloClientService: ApolloClient<any>) {
+import BaseCrudService from '../_base/baseCrud.service'
+import { IApolloClientService } from '../_common/apolloClient.service.interface'
+
+import Book from './book.model'
+import { IBookService } from './book.service.interface'
+import BookCrudDto from './dto/bookCrud.dto'
+
+@injectable()
+class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookService<BookCrudDto, Book> {
+  public constructor (
+    @inject() private readonly apolloClientService: IApolloClientService
+  ) {
     super()
   }
 
   public get (): Promise<Book[]> {
-    return this.apolloClientService.query({
+    return this.apolloClientService.client.query({
       query: gql`
         query GetBooks {
           books {
@@ -21,7 +27,7 @@ class BookService extends BaseCrudService<Book> implements ICrudService<IBookCru
           }
         }
       `
-    }).then(r => {
+    }).then((r: any) => {
       return r.data
     })
   }
@@ -30,8 +36,8 @@ class BookService extends BaseCrudService<Book> implements ICrudService<IBookCru
     return Promise.resolve(new Book())
   }
 
-  public create (dto: IBookCrudDto): Promise<Book> {
-    return this.apolloClientService.mutate({
+  public create (dto: BookCrudDto): Promise<Book> {
+    return this.apolloClientService.client.mutate({
       variables: {
         title: dto.title
       },
@@ -44,12 +50,12 @@ class BookService extends BaseCrudService<Book> implements ICrudService<IBookCru
           }
         }
       `
-    }).then(r => {
+    }).then((r: any) => {
       return r.data.create
     })
   }
 
-  public update (dto: IBookCrudDto): Promise<Book> {
+  public update (dto: BookCrudDto): Promise<Book> {
     return Promise.resolve(new Book())
   }
 

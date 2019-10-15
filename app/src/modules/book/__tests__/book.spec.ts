@@ -3,10 +3,19 @@
  * @jest-environment jsdom
  */
 
-import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
+import 'reflect-metadata'
+import { container } from 'inversify-props'
+container.unbindAll()
+
+import { mount, createLocalVue } from '@vue/test-utils'
 import * as All from 'quasar'
+import { VueConstructor } from 'vue/types/vue'
+
+import { IBookService } from '../book.service.interface'
+import BookCrudDto from '../dto/bookCrud.dto.interface'
+import Book from '../book.model'
+import BookService from '../book.service.mock'
 import BookComponent from '../components/book.component'
-import { VueConstructor } from 'vue/types/vue';
 
 // import langEn from 'quasar/lang/en-us' // change to any language you wish! => this breaks wallaby :(
 const { Quasar, date } = All
@@ -26,6 +35,8 @@ const components = Object.keys(All).reduce<{ [index: string]: VueConstructor }>(
 )
 
 describe('Mount Quasar', () => {
+  container.addTransient<IBookService<BookCrudDto, Book>>(BookService)
+
   const localVue = createLocalVue()
   localVue.use(Quasar, { components }) // , lang: langEn
 
@@ -42,12 +53,9 @@ describe('Mount Quasar', () => {
     expect(wrapper.find('h1').text()).toContain('Adding a book!')
   })
 
-  /*
   it('creates a book', async () => {
     vm.title = 'Alakazam!'
-    const book = await vm.save()
-    console.log('Title: ', book.title)
-    expect(book.title).toBe('Alakazams!')
+    const book = await vm.saveBook()
+    expect(book.title).toBe('Alakazam!')
   })
-   */
 })

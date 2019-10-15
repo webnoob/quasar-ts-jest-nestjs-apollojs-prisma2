@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import Book from 'src/modules/book/components/Book.vue'
+import Book from 'src/modules/book/components/book.component.vue'
 
 @Component({
   components: {

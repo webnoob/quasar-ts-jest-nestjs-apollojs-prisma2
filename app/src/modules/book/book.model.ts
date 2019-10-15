@@ -1,6 +1,7 @@
-import BaseModel from '../base/base.model'
+import BaseModel from '../_base/base.model'
 
 export default class Book extends BaseModel {
-  title!: string
-  description!: string
+  public id: string = ''
+  public title: string = ''
+  public description!: string
 }

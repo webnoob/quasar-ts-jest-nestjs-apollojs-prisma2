@@ -1262,7 +1262,7 @@
   resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.1.tgz#35cc15b9c4f30a18ef21852e255fdb02f6d59b89"
   integrity sha512-yALhelO3i0hqZwhjtcr6dYyaLoCHbAMshwtj6cGxTvHZAKXHsYGdff6E8EPw3xLKY0ELUTQ69Q1rQiJENnccMA==
 
-"@types/jest@^24.0.13":
+"@types/jest@^24.0.13", "@types/jest@^24.0.19":
   version "24.0.19"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.19.tgz#f7036058d2a5844fe922609187c0ad8be430aff5"
   integrity sha512-YYiqfSjocv7lk5H/T+v5MjATYjaTMsUkbDnjGqSMoO88jWdtJXJV4ST/7DKZcoMHMBvB2SeSfyOzZfkxXHR5xg==
@@ -5589,6 +5589,19 @@ invariant@^2.2.2, invariant@^2.2.4:
   dependencies:
     loose-envify "^1.0.0"
 
+inversify-props@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/inversify-props/-/inversify-props-1.4.3.tgz#bfa2a1761d6e178979d191fa6b291c65f632b706"
+  integrity sha512-fgA3lpw6wQ4JvOdLVXJox7/nBxaxocBZMh1ckIgMZG7RgApBspVzUF99z/eIul6ZDFJ7n0yxzE+OrQvjtOZNyQ==
+  dependencies:
+    inversify "^5.0.1"
+    typescript "^3.5.3"
+
+inversify@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.1.tgz#500d709b1434896ce5a0d58915c4a4210e34fb6e"
+  integrity sha512-Ieh06s48WnEYGcqHepdsJUIJUXpwH5o5vodAX+DK2JA/gjy4EbEcQZxw+uFfzysmKjiLXGYwNG3qDZsKVMcINQ==
+
 invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
@@ -6427,24 +6440,6 @@ jest@^24.8.0:
   dependencies:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
-
-jpex-defaults@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jpex-defaults/-/jpex-defaults-2.0.0.tgz#cfee993bcf704103eb79851a376a41423645601a"
-  integrity sha1-z+6ZO89wQQPreYUaN2pBQjZFYBo=
-
-jpex-web@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jpex-web/-/jpex-web-2.0.0.tgz#978c5ee46244673cdaaf0102fea80810d4fac53b"
-  integrity sha1-l4xe5GJEZzzarwEC/qgIENT6xTs=
-  dependencies:
-    jpex-defaults "^2.0.0"
-    promise-polyfill "^6.0.2"
-
-jpex@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/jpex/-/jpex-2.1.0.tgz#da389aed51b2296b3095d0ba059db3f2a7f3f69f"
-  integrity sha512-OaPn5axpBcoYKX8G6WKGr7NWyG+Y846oohFm2wPCHfjVXhORt7KuZyFASLl5grpTGqVYUkt+9ED9x51Jn6pUVA==
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -8726,11 +8721,6 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-promise-polyfill@^6.0.2:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-6.1.0.tgz#dfa96943ea9c121fca4de9b5868cb39d3472e057"
-  integrity sha1-36lpQ+qcEh/KTem1hoyznTRy4Fc=
-
 promise@^8.0.2:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/promise/-/promise-8.0.3.tgz#f592e099c6cddc000d538ee7283bb190452b0bf6"
@@ -9031,6 +9021,11 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 regenerate-unicode-properties@^8.1.0:
   version "8.1.0"
@@ -10538,7 +10533,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.3.3:
+typescript@^3.3.3, typescript@^3.5.3:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
   integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
@@ -10796,14 +10791,6 @@ vue-i18n@^8.0.0:
   version "8.14.1"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.14.1.tgz#0ca0a2742c14e0144481655157fffcc7cc313e50"
   integrity sha512-uHzw5GTFyf/TmjJXveSl3L4CG61KI4lvhKOQvx8W4Y8P2LZ3v3l/qw4KRs1C6pWyjkfY9p0rezYNFO5YzMEQ8A==
-
-vue-inject@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/vue-inject/-/vue-inject-2.1.1.tgz#1a5ebcf7bfe97b070efa368f73091c9414caeca2"
-  integrity sha512-nn8TujsjtKbC6wSqxMwI/Y7Xyta8NeI06q7+2v7C/LN+LRwzO0wL1b0IqHRzIRTFUZq8C+JU1wc9LwEEahKW1A==
-  dependencies:
-    jpex "^2.1.0"
-    jpex-web "^2.0.0"
 
 vue-jest@^3.0.2:
   version "3.0.5"

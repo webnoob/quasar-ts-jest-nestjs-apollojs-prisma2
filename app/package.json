@@ -27,11 +27,12 @@
     "axios": "^0.18.1",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
+    "inversify-props": "^1.4.3",
     "node-fetch": "^2.6.0",
     "quasar": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
     "vue-class-component": "^7.1.0",
     "vue-i18n": "^8.0.0",
-    "vue-inject": "^2.1.1",
     "vue-property-decorator": "^8.2.2"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^1.0.0-beta.10",
     "@quasar/quasar-app-extension-testing-unit-jest": "^1.0.0",
     "@quasar/quasar-app-extension-typescript": "^1.0.0-beta.1",
+    "@types/jest": "^24.0.19",
     "@types/node": "11.9.5",
     "@types/node-fetch": "^2.5.2",
     "@typescript-eslint/eslint-plugin": "^1.12.0",
