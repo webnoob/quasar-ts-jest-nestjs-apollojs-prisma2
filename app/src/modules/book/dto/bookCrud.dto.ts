@@ -1,6 +1,4 @@
-import IBookCrudDto from './bookCrud.dto.interface'
-
-export default class BookCrudDto implements IBookCrudDto {
+export default class BookCrudDto {
   public id?: string
   public title: string = ''
   public description?: string

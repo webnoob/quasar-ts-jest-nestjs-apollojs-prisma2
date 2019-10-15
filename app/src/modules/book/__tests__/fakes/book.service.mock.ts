@@ -1,10 +1,9 @@
 import { injectable } from 'inversify-props'
 
-import BaseCrudService from '../_base/baseCrud.service'
-
-import Book from './book.model'
-import { IBookService } from './book.service.interface'
-import BookCrudDto from './dto/bookCrud.dto'
+import BaseCrudService from '../../../_base/baseCrud.service'
+import Book from '../../book.model'
+import { IBookService } from '../../book.service.interface'
+import BookCrudDto from '../../dto/bookCrud.dto'
 
 @injectable()
 class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookService<BookCrudDto, Book> {

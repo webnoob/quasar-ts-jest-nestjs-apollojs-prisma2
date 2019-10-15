@@ -12,9 +12,9 @@ import * as All from 'quasar'
 import { VueConstructor } from 'vue/types/vue'
 
 import { IBookService } from '../book.service.interface'
-import BookCrudDto from '../dto/bookCrud.dto.interface'
+import BookCrudDto from '../dto/bookCrud.dto'
 import Book from '../book.model'
-import BookService from '../book.service.mock'
+import BookService from './fakes/book.service.mock'
 import BookComponent from '../components/book.component'
 
 // import langEn from 'quasar/lang/en-us' // change to any language you wish! => this breaks wallaby :(
@@ -34,7 +34,7 @@ const components = Object.keys(All).reduce<{ [index: string]: VueConstructor }>(
   }, {}
 )
 
-describe('Mount Quasar', () => {
+describe('Test Book Component', () => {
   container.addTransient<IBookService<BookCrudDto, Book>>(BookService)
 
   const localVue = createLocalVue()
