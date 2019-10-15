@@ -30,7 +30,7 @@ module.exports = {
     '<rootDir>/test/jest/__tests__/**/*.spec.js',
     '<rootDir>/test/jest/__tests__/**/*.test.js',
     '<rootDir>/src/**/__tests__/*_jest.spec.js',
-    '<rootDir>/src/modules/**/__tests__/*.spec.js'
+    '<rootDir>/src/modules/**/__tests__/*.spec.ts'
   ],
   moduleFileExtensions: [
     'vue',

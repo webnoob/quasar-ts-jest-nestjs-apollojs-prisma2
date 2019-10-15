@@ -4,14 +4,12 @@ import BookService from 'src/modules/book/book.service'
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createHttpLink } from 'apollo-link-http'
-import Vue from 'vue'
 import { createDecorator } from 'vue-class-component'
-
-Vue.use(injector)
+import fetch from 'node-fetch'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql',
-  fetch
+  fetch: fetch as any
 })
 
 const a = new ApolloClient({
@@ -28,7 +26,7 @@ export default injector
 export const InjectDependant = createDecorator((options, key) => {
   if (!options.computed) options.computed = {}
   const dep = injector.get(key)
-  options.computed![key] = () => {
+  (options as any).computed![key] = () => {
     return dep
   }
 })
