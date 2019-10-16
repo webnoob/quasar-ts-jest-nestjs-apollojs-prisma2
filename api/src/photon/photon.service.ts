@@ -2,8 +2,7 @@ import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common'
 import { Photon } from '@generated/photon'
 
 @Injectable()
-export class PhotonService extends Photon
-  implements OnModuleInit, OnModuleDestroy {
+export class PhotonService extends Photon implements OnModuleInit, OnModuleDestroy {
   constructor() {
     super()
   }
