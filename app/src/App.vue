@@ -5,14 +5,8 @@
 </template>
 
 <script lang="ts">
-import 'reflect-metadata'
-import { buildDependencyContainer } from './modules/diContainer'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
-export default class AppComponent extends Vue {
-  created () {
-    buildDependencyContainer()
-  }
-}
+export default class AppComponent extends Vue { }
 </script>

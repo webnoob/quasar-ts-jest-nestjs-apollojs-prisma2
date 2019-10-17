@@ -22,4 +22,4 @@ const store: StoreOptions<IRootState> = {
   strict: !!process.env.DEV
 }
 
-export default new Vuex.Store<IRootState>(store);
+export default new Vuex.Store<IRootState>(store)

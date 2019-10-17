@@ -3,7 +3,7 @@ import { inject } from 'inversify-props'
 
 import Book from '../book.model'
 import BookCrudDto from '../dto/bookCrud.dto'
-import { IBookService } from '../book.service.interface'
+import IBookService from '../book.service.interface'
 
 @Component
 export default class BookComponent extends Vue {

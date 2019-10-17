@@ -2,20 +2,13 @@ import gql from 'graphql-tag'
 import { inject, injectable } from 'inversify-props'
 
 import BaseCrudService from '../_base/baseCrud.service'
-import { IApolloClientService } from '../_common/apolloClient.service.interface'
 
 import Book from './book.model'
-import { IBookService } from './book.service.interface'
+import IBookService from './book.service.interface'
 import BookCrudDto from './dto/bookCrud.dto'
 
 @injectable()
 class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookService<BookCrudDto, Book> {
-  public constructor (
-    @inject() private readonly apolloClientService: IApolloClientService
-  ) {
-    super()
-  }
-
   public get (): Promise<Book[]> {
     return this.apolloClientService.client.query({
       query: gql`
