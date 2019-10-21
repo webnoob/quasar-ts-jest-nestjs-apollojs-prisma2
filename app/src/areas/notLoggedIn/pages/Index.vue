@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import AuthService from 'src/modules/_base/auth/auth.service'
+import AuthService, { AuthServiceError } from 'src/modules/_base/auth/auth.service'
 import { injectSingleton } from '../../../modules/diContainer'
 
 @Component
@@ -24,9 +24,10 @@ export default class IndexComponent extends Vue {
   private readonly authService!: AuthService
 
   public login () {
-    this.authService.login(this.username, this.password).then(u => {
-      console.log(u)
+    this.authService.login(this.username, this.password).then(() => {
       this.$router.push('/')
+    }).catch((e: AuthServiceError) => {
+      this.showError('There was an error logging in: ', e.message)
     })
   }
 }

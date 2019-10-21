@@ -3,6 +3,7 @@ import User from '../user/user.model'
 import IAuthService from './auth.service.interface'
 import AxiosService from '../axios/axios.service'
 import { AxiosResponse } from 'axios'
+import { AuthServiceError } from './auth.shim'
 
 @injectable()
 class AuthService implements IAuthService {
@@ -32,3 +33,6 @@ class AuthService implements IAuthService {
 }
 
 export default AuthService
+
+export { AuthServiceError }
+
