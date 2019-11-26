@@ -15,6 +15,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate (payload: any) {
-    return { userId: payload.sub, username: payload.username }
+    return {
+      // re-assigning to id here so this object "looks" like a User
+      // and it makes sense we'd try and access user.id
+      id: payload.sub,
+      username: payload.username,
+      tokenExpires: payload.exp,
+      role: payload.role,
+      canActAs: payload.canActAs,
+      hasActingAs: payload.hasActingAs,
+      mimicUsername: payload.mimicUsername,
+      mimicId: payload.mimicSub,
+      mimicRole: payload.mimicRole
+    }
   }
 }

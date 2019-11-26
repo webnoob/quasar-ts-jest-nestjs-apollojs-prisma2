@@ -3,7 +3,7 @@ import { inject } from 'inversify-props'
 
 import Book from '../book.model'
 import BookCrudDto from '../dto/bookCrud.dto'
-import IBookService from '../book.service.interface'
+import BookServiceInterface from '../book.service.interface'
 
 @Component
 export default class BookComponent extends Vue {
@@ -12,7 +12,7 @@ export default class BookComponent extends Vue {
   public books: Book[] = []
 
   @inject()
-  private bookService!: IBookService<BookCrudDto, Book>
+  private bookService!: BookServiceInterface<BookCrudDto, Book>
 
   public showAddBook () {
     this.showingAddBook = !this.showingAddBook
@@ -28,17 +28,30 @@ export default class BookComponent extends Vue {
 
   public save (): void {
     this.saveBook().then(book => {
-      this.$q.notify({
-        message: 'Book created: ' + book.id
-      })
+      if (book) {
+        this.loadBooks()
+        this.$q.notify({
+          message: 'Book created: ' + book.id
+        })
+      }
     })
   }
 
   public cancel () { }
 
-  public created () {
+  public loadBooks () {
     this.bookService.get().then(books => {
-      this.books = books
+      this.books = books.reverse()
     })
+  }
+
+  public deleteBook (id: string) {
+    this.bookService.delete(id).then(r => {
+      this.loadBooks()
+    })
+  }
+
+  public created () {
+    this.loadBooks()
   }
 }

@@ -1,38 +1,52 @@
-import { inject, injectable, container } from 'inversify-props'
-import User from '../user/user.model'
-import IAuthService from './auth.service.interface'
-import AxiosService from '../axios/axios.service'
 import { AxiosResponse } from 'axios'
-import { AuthServiceError } from './auth.shim'
+import { injectable } from 'inversify-props'
+
+import User from '../user/user.model'
+import AuthServiceInterface, { LoginResult } from './auth.service.interface'
+import AxiosService from '../axios/axios.service'
+import { injectSingleton } from '../../diContainer'
 
 @injectable()
-class AuthService implements IAuthService {
-  public user: User | null = null
-
-  public get isAuthenticated (): boolean {
-    return !!this.user
-  }
+class AuthService implements AuthServiceInterface {
 
   public constructor (
-    @inject() private readonly axiosService: AxiosService
+    @injectSingleton(AxiosService) private readonly axiosService: AxiosService
   ) { }
 
-  public async login (username: string, password: string): Promise<User> {
+  public async login (username: string, password: string): Promise<LoginResult> {
     return this.axiosService.axios.post('auth/login', {
       username,
       password
     }).then((r: AxiosResponse) => {
-      const user = {
+      const loginResponse: LoginResult = r.data
+      const user: User = {
         ...new User(),
-        ...r.data
+        ...loginResponse.user
       }
 
-      return this.user = user && user
+      return {
+        user,
+        token: {
+          data: loginResponse.token.data,
+          expires: loginResponse.token.expires
+        },
+        mimicUser: null
+      }
+    })
+  }
+
+  public async logout (): Promise<any> {
+    return this.axiosService.axios.post('auth/logout')
+  }
+
+  public async setMimicUser (mimicUser: User): Promise<LoginResult> {
+    return this.axiosService.axios.post('auth/setMimicUser', {
+      id: mimicUser ? mimicUser.id : null
+    }).then((r: AxiosResponse) => {
+      return r.data
     })
   }
 }
 
 export default AuthService
-
-export { AuthServiceError }
 

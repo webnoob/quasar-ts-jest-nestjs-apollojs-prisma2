@@ -1,0 +1,24 @@
+datasource db {
+  provider = "sqlite"
+  url = "***"
+}
+
+generator photon {
+  provider = "photonjs"
+}
+
+model Book {
+  id    String  @default(cuid()) @id @unique
+  title String
+  description  String?
+}
+
+model User {
+  id String @default(cuid()) @id @unique
+  username String @unique
+  emailAddress String @unique
+  password String
+  role Int
+  canActAs User[] @relation(name: "canActAs")
+  hasActingAs User[] @relation(name: "canActAs")
+}

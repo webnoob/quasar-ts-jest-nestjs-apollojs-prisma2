@@ -13,4 +13,13 @@ export class User {
 
   @Field(type => String)
   password: string
+
+  @Field(type => Int)
+  role: number
+
+  @Field(type => [String], { nullable: true })
+  canActAs?: string[]
+
+  @Field(type => [String], { nullable: true })
+  hasActingAs?: string[]
 }

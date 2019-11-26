@@ -11,7 +11,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import * as All from 'quasar'
 import { VueConstructor } from 'vue/types/vue'
 
-import IBookService from '../book.service.interface'
+import BookServiceInterface from '../book.service.interface'
 import BookCrudDto from '../dto/bookCrud.dto'
 import Book from '../book.model'
 import BookService from './fakes/book.service.mock'
@@ -20,7 +20,7 @@ import IApolloClientService from '../../_base/apollo/apolloClient.service.interf
 import ApolloClientService from '../../_base/apollo/__tests__/fakes/apolloClient.service.mock'
 
 // import langEn from 'quasar/lang/en-us' // change to any language you wish! => this breaks wallaby :(
-const { Quasar, date } = All
+const { Quasar } = All
 
 function isComponent(value: any): value is VueConstructor {
   return value && value.component && value.component.name != null
@@ -38,7 +38,7 @@ const components = Object.keys(All).reduce<{ [index: string]: VueConstructor }>(
 
 describe('Test Book Component', () => {
   container.addSingleton<IApolloClientService>(ApolloClientService)
-  container.addTransient<IBookService<BookCrudDto, Book>>(BookService)
+  container.addTransient<BookServiceInterface<BookCrudDto, Book>>(BookService)
 
   const localVue = createLocalVue()
   localVue.use(Quasar, { components }) // , lang: langEn

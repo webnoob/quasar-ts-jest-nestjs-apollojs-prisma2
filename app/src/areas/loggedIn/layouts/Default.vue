@@ -1,5 +1,11 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" :key="mimicUser.id">
+    <q-page-container>
+      <h6 class="q-pa-none q-ma-none">[{{authenticatedUser.username}} acting as: [{{mimicUser.username}}]] Logged in website container</h6>
+      <select-user-to-mimic />
+      <router-view />
+    </q-page-container>
+
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -16,90 +22,97 @@
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
+        <q-btn
+          @click="logout"
+          label="Logout"
+        />
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       bordered
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item-label header>Navigation</q-item-label>
+        <q-item to="/dashboard" clickable>
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="bank" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Dashboard</q-item-label>
+            <q-item-label caption>Logged in area</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
+        <q-item to="/" clickable>
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="home" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Home</q-item-label>
+            <q-item-label caption>Not logged in area</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
+        <q-item to="/dashboard/g2" v-can="appRole.Reviewer" clickable>
           <q-item-section avatar>
-            <q-icon name="chat" />
+            <q-icon name="person" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Group 2 Up</q-item-label>
+            <q-item-label caption>Logged in area</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
+        <q-item to="/dashboard/g3" v-can="appRole.Author" clickable>
           <q-item-section avatar>
-            <q-icon name="record_voice_over" />
+            <q-icon name="person" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
+            <q-item-label>Group 3 Up</q-item-label>
+            <q-item-label caption>Logged in area</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.quasar.dev">
+        <q-item to="/dashboard/g6" v-can="appRole.VirtualAssistant" clickable>
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="person" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
+            <q-item-label>Group 6 Up</q-item-label>
+            <q-item-label caption>Logged in area</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://facebook.quasar.dev">
+        <q-item to="/dashboard/g7" v-can="appRole.Admin" clickable>
           <q-item-section avatar>
-            <q-icon name="public" />
+            <q-icon name="person" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Facebook</q-item-label>
-            <q-item-label caption>@QuasarFramework</q-item-label>
+            <q-item-label>Group 7 Up</q-item-label>
+            <q-item-label caption>Logged in area</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import {AUTH_LOGOUT_REQUEST} from '../../../store/actions/auth'
+import SelectUserToMimic from '../../../components/SelectUserToMimic.vue'
+import BaseMixin from '../../../components/mixins/base'
+import { Component } from 'vue-property-decorator'
 
-export default Vue.extend({
-  name: 'MyLayout',
-
-  data () {
-    return {
-      leftDrawerOpen: false
-    }
+@Component({
+  components: {
+    SelectUserToMimic
   }
 })
+export default class MyLayout extends BaseMixin {
+  leftDrawerOpen: boolean = false
+
+  logout () {
+    this.$store.dispatch(AUTH_LOGOUT_REQUEST).then(() => {
+      this.$router.push('login')
+    })
+  }
+}
 </script>

@@ -21,6 +21,10 @@ export class BookService {
   }
 
   delete (id: string) {
-    return Promise.resolve()
+    return this.photonService.books.delete({
+      where: {
+        id
+      }
+    })
   }
 }

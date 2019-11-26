@@ -24,3 +24,10 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+
+### Development Concepts
+
+1. Components access the store
+2. Store accesses services
+3. Services return data and don't modify the state directly.
+    3a. They can however dispatch events

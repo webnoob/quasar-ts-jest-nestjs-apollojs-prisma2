@@ -1,14 +1,13 @@
 import gql from 'graphql-tag'
-import { inject, injectable } from 'inversify-props'
+import { injectable } from 'inversify-props'
 
 import BaseCrudService from '../_base/baseCrud.service'
-
 import Book from './book.model'
-import IBookService from './book.service.interface'
+import BookServiceInterface from './book.service.interface'
 import BookCrudDto from './dto/bookCrud.dto'
 
 @injectable()
-class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookService<BookCrudDto, Book> {
+class BookService extends BaseCrudService<BookCrudDto, Book> implements BookServiceInterface<BookCrudDto, Book> {
   public get (): Promise<Book[]> {
     return this.apolloClientService.client.query({
       query: gql`
@@ -21,11 +20,11 @@ class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookSer
         }
       `
     }).then((r: any) => {
-      return r.data
+      return r.data.books
     })
   }
 
-  public getById (id: number): Promise<Book> {
+  public getById (id: string): Promise<Book> {
     return Promise.resolve(new Book())
   }
 
@@ -44,7 +43,7 @@ class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookSer
         }
       `
     }).then((r: any) => {
-      return r.data.create
+      return r.data ? r.data.create : null
     })
   }
 
@@ -52,8 +51,21 @@ class BookService extends BaseCrudService<BookCrudDto, Book> implements IBookSer
     return Promise.resolve(new Book())
   }
 
-  public delete (id: number): Promise<any> {
-    return Promise.resolve()
+  public delete (id: string): Promise<any> {
+    return this.apolloClientService.client.mutate({
+      variables: {
+        id
+      },
+      mutation: gql`
+        mutation DeleteBook ($id: String!) {
+          delete (id: $id) {
+            id
+          }
+        }
+      `
+    }).then((r: any) => {
+      return r.data ? r.data.create : null
+    })
   }
 }
 

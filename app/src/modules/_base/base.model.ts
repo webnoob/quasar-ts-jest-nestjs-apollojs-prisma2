@@ -1,6 +1,4 @@
-import { IBaseModel } from './base.model.interface'
-
-export default class BaseModel implements IBaseModel {
+export default class BaseModel {
   public id!: string
   public createdDate!: Date
 }

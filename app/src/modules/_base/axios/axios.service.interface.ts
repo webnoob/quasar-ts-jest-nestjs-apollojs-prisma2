@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
 
-export default interface IAxiosService {
+export default interface AxiosServiceInterface {
   readonly axios: AxiosInstance
 }

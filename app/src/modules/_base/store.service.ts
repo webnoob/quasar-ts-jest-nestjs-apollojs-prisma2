@@ -1,12 +1,16 @@
-import IStoreService from './store.service.interface'
-import { inject, injectable } from 'inversify-props'
+import { injectable } from 'inversify-props'
+import { Store } from 'vuex'
+
+import StoreServiceInterface from './store.service.interface'
+import { RootState } from '../../store/types'
 
 @injectable()
-class StoreService implements IStoreService {
-  public constructor () {}
+class StoreService implements StoreServiceInterface {
+  public store!: Store<RootState>
 
-  public dispatch (): Promise<any> {
-    return Promise.resolve()
+  public configure (store: Store<RootState>): void {
+    this.store = store
   }
-
 }
+
+export default StoreService

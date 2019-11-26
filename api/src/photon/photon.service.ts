@@ -3,14 +3,14 @@ import { Photon } from '@generated/photon'
 
 @Injectable()
 export class PhotonService extends Photon implements OnModuleInit, OnModuleDestroy {
-  constructor() {
+  constructor () {
     super()
   }
-  async onModuleInit() {
+  async onModuleInit () {
     await this.connect()
   }
 
-  async onModuleDestroy() {
+  async onModuleDestroy () {
     await this.disconnect()
   }
 }

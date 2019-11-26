@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-client'
 
-export default interface IApolloClientService {
+export default interface ApolloClientServiceInterface {
   client: ApolloClient<any>
 }

@@ -1,8 +1,14 @@
 import Vue from 'vue'
-import Vuex, { StoreOptions } from 'vuex'
+import Vuex, { Store } from 'vuex'
 
-import { book } from './book'
-import { IRootState } from './types'
+import { book } from './modules/book'
+import { auth } from './modules/auth'
+import { ui } from './modules/ui'
+import { user } from './modules/user'
+import { RootState } from './types'
+
+import { buildDependencyContainer } from '../modules/diContainer'
+import { QSsrContext } from 'quasar'
 
 Vue.use(Vuex)
 
@@ -11,15 +17,25 @@ Vue.use(Vuex)
  * directly export the Store instantiation
  */
 
+let store: Store<RootState>
 
-const store: StoreOptions<IRootState> = {
-  modules: {
-    book
-  },
+export default function ({ ssrContext }: { ssrContext: QSsrContext }) {
+  store = new Vuex.Store( {
+    modules: {
+      book,
+      auth,
+      ui,
+      user
+    },
 
-  // enable strict mode (adds overhead!)
-  // for dev mode only
-  strict: !!process.env.DEV
+    // enable strict mode (adds overhead!)
+    // for dev mode only
+    strict: !!process.env.DEV
+  })
+
+  buildDependencyContainer(ssrContext, store)
+
+  return store
 }
 
-export default new Vuex.Store<IRootState>(store)
+export { store }

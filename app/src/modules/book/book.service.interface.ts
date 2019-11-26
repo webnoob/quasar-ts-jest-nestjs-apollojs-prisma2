@@ -1,4 +1,4 @@
-import ICrudService from '../_base/baseCrud.service.interface'
+import BaseCrudServiceInterface from '../_base/baseCrud.service.interface'
 
-export default interface IBookService<DTO, T> extends ICrudService<DTO, T> {
+export default interface BookServiceInterface<DTO, T> extends BaseCrudServiceInterface<DTO, T> {
 }

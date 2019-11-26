@@ -4,10 +4,10 @@ import fetch from 'node-fetch'
 import { createHttpLink } from 'apollo-link-http'
 import { injectable } from 'inversify-props'
 
-import IApolloClientService from '../../apolloClient.service.interface'
+import ApolloClientServiceInterface from '../../apolloClient.service.interface'
 
 @injectable()
-class ApolloClientService implements IApolloClientService {
+class ApolloClientService implements ApolloClientServiceInterface {
   public client: ApolloClient<any>
 
   public constructor () {

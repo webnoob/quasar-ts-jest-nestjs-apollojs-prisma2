@@ -3,6 +3,7 @@
 
 module.exports = function (ctx) {
   return {
+    preFetch: true,
     // Quasar looks for *.js files by default
     sourceFiles: {
       router: 'src/router/index.ts',
@@ -14,8 +15,9 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'authGuard',
-      'components'
+      'routeGuard',
+      'components',
+      'directives'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -63,7 +65,7 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // showProgress: false,
       // gzip: true,
       // analyze: true,

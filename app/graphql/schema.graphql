@@ -18,4 +18,15 @@ type Mutation {
 
 type Query {
   books(skip: Int = 0, take: Int = 25): [Book!]!
+  getUsersToMimic(needle: String!): [User!]!
+}
+
+type User {
+  id: String!
+  username: String!
+  emailAddress: String!
+  password: String!
+  role: Int!
+  canActAs: [String!]
+  hasActingAs: [String!]
 }
