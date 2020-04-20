@@ -1,3 +1,6 @@
+# Please Note
+This repo is well out of date with changes I've been making to my main project. I'm thinking of making this a proper framework. It serves as an example (albeit very rough) for now.
+
 # Quasar SAAS
 
 The idea behind this is to provide a good starter for a SAAS application. It contains very basic examples.
